@@ -167,11 +167,13 @@ def plotMap(map2d_, path_, title_ =''):
     plt.title(title_)
     plt.imshow(colorsMap2d, interpolation='nearest')
     plt.colorbar()
-    plt.plot(path[:][0],path[:][1], color='magenta',linewidth=2.5)
+    plt.plot(path[:][1],path[:][0], color='magenta',linewidth=2.5)
     plt.show()
 
 
-"""
+
+'''
+
 # create a map with obstacles randomly distributed
 #  0 - Free cell
 # -1 - Obstacle
@@ -210,4 +212,4 @@ print("path", example_solved_path)
 
 plotMap(example_solved_map, example_solved_path)
 
-"""
+'''
