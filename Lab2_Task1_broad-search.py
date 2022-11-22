@@ -92,18 +92,6 @@ def search(obs_map):
 if __name__ == '__main__':
     #_map_ = generateMap2d([40, 40])
     _map_, info = generateMap2d_obstacle([60, 60])
-    '''
-    _map_ = np.array([[-1, 0, 0],
-                      [0, 0, 0],
-                      [0, 0, 0],
-                      [0, 0, 0],
-                      [-1, -3, 0],
-                      [0, 0, 0],
-                      [0, 0, 0],
-                      [-2, -1, -1],
-                      [0, -1, 0],
-                      [0, 0, 0]])
-    '''
 
     print(_map_)
     plt.clf()
