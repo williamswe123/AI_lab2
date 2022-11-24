@@ -31,9 +31,6 @@ class PriorityQueue:
 
 def search(obs_map, search_type):
 
-    already_visited=[]
-    frontier = PriorityQueue()
-
     def find_value(value):
         start_location = node(value=None, parent=None, location=None)
         for x, c in enumerate(obs_map):
@@ -56,11 +53,12 @@ def search(obs_map, search_type):
 
             if (map_shape[0] > n_x >= 0) and (map_shape[1] > n_y >= 0):
 
-                n = node(parent= current_node,  #current_node,
+                n = node(parent= current_node,
                          location=(n_x, n_y),
                          value=obs_map[n_x][n_y])
                 if not obs_map[n_x, n_y] == -1:
-                    neighbors.append(n)
+                    if not n.location in already_visited:
+                        neighbors.append(n)
         return neighbors
 
     def euclidian_heuristic(n1, n2):
@@ -76,10 +74,16 @@ def search(obs_map, search_type):
             return 0
         if search_type == 'DSF':
             return prev_cost - 1
+        if search_type == 'UCS':
+            return len(trace_back(child_node)) #+ 1
         if search_type == 'Greedy':
-            p =euclidian_heuristic(child_node, end_node)
-            print(p)
+            p = euclidian_heuristic(child_node, end_node)
+            #print(p)
             return p
+        if search_type == 'A*':
+            p = euclidian_heuristic(child_node, end_node)
+            return len(trace_back(child_node)) + p
+
 
     def paint_map():
         # Paint the map with the searched area:
@@ -98,36 +102,42 @@ def search(obs_map, search_type):
         my_path = np.array(my_path)
         return my_path
 
+    already_visited=[]
+    frontier = PriorityQueue()
     priority = 0
 
     # add starting cell to open list
     frontier.add(start_node, 0)
-    already_visited.append(start_node.location)
+
 
     while not frontier.isEmpty():
         current_node = frontier.remove()
+
         if current_node.value == -3:
             break
-
         neighbours = get_neighbors(current_node)
-        for child_node in neighbours:
-            if not child_node.location in already_visited:
+
+        if not current_node.location in already_visited:
+            for child_node in neighbours:
                 priority = get_priority(search_type=search_type, prev_cost=priority)
                 frontier.add(child_node, priority)
-                already_visited.append(child_node.location)
-            else:
-                pass
+
+        already_visited.append(current_node.location)
 
     paint_map()
     my_path = trace_back(current_node)
+
+
+    print('Title:', search_type, ', Path lenght: ', \
+          len(my_path), ', Expanded nodes: ', len(already_visited))
 
     return my_path
 
 
 if __name__ == '__main__':
-    _map_, info = generateMap2d_obstacle([60, 60])
-    #_map_= generateMap2d([20, 20])
-    #  _map_= np.array([[-2,0,0,0,0,0,0,0],
+    #_map_, info = generateMap2d_obstacle([60, 60])
+    _map_= generateMap2d([80, 80])
+    #_map_= np.array([[-2,0,0,0,0,0,0,0],
     #                   [0,0,0,0,0,0,0,0],
     #                   [0,0,0,0,0,0,0,0],
     #                   [0,0,0,0,0,0,0,0],
@@ -141,7 +151,7 @@ if __name__ == '__main__':
     plt.imshow(_map_)
     plt.show()
 
-    for search_type in ["Random", "DSF", "BFS", "Greedy"]:
+    for search_type in ["Random", "DSF", "BSF", "UCS", "Greedy", "A*"]:
         map2 = copy.copy(_map_)
         search_result = search(map2, search_type)
         plotMap(map2, search_result, search_type)
