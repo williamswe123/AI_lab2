@@ -1,0 +1,98 @@
+---------------------------------------------------
+Map style: generateMap2d
+Number of iterations: 100
+
+Algorithm used:  Random
+Mean time (ms):  1006.56 ± 960.08
+Mean path length:  86.27 ± 41.66
+Mean # expanded nodes:  2032.9 ± 1117.84
+
+Algorithm used:  DSF
+Mean time (ms):  234.38 ± 264.44
+Mean path length:  830.03 ± 570.83
+Mean # expanded nodes:  1660.0 ± 1291.78
+
+Algorithm used:  BSF
+Mean time (ms):  972.81 ± 809.52
+Mean path length:  44.09 ± 20.27
+Mean # expanded nodes:  3033.91 ± 1682.9
+
+Algorithm used:  UCS
+Mean time (ms):  935.94 ± 746.87
+Mean path length:  44.09 ± 20.27
+Mean # expanded nodes:  3077.28 ± 1680.59
+
+Algorithm used:  Greedy_euclidian
+Mean time (ms):  1.56 ± 4.69
+Mean path length:  44.25 ± 20.25
+Mean # expanded nodes:  44.8 ± 20.77
+
+Algorithm used:  A*_euclidian
+Mean time (ms):  165.47 ± 273.31
+Mean path length:  44.09 ± 20.27
+Mean # expanded nodes:  1023.54 ± 1028.98
+
+Algorithm used:  Greedy_Manhattan
+Mean time (ms):  1.09 ± 3.99
+Mean path length:  46.71 ± 21.99
+Mean # expanded nodes:  48.06 ± 23.04
+
+Algorithm used:  A*_Manhattan
+Mean time (ms):  129.22 ± 235.81
+Mean path length:  44.09 ± 20.27
+Mean # expanded nodes:  692.34 ± 727.91
+---------------------------------------------------
+Map style: generateMap2d_obstacle
+Number of iterations: 100
+
+Algorithm used:  Random
+Mean time (ms):  1571.88 ± 1288.07
+Mean path length:  142.46 ± 70.56
+Mean # expanded nodes:  2434.7 ± 988.88
+
+Algorithm used:  DSF
+Mean time (ms):  262.89 ± 258.03
+Mean path length:  832.26 ± 434.13
+Mean # expanded nodes:  1881.06 ± 1201.02
+
+Algorithm used:  BSF
+Mean time (ms):  1273.83 ± 790.72
+Mean path length:  70.94 ± 33.15
+Mean # expanded nodes:  3526.56 ± 1408.46
+
+Algorithm used:  UCS
+Mean time (ms):  1164.45 ± 687.26
+Mean path length:  70.94 ± 33.15
+Mean # expanded nodes:  3563.77 ± 1405.62
+
+Algorithm used:  Greedy_euclidian
+Mean time (ms):  74.45 ± 88.86
+Mean path length:  82.56 ± 45.72
+Mean # expanded nodes:  658.92 ± 665.59
+
+Algorithm used:  A*_euclidian
+Mean time (ms):  387.11 ± 367.84
+Mean path length:  70.94 ± 33.15
+Mean # expanded nodes:  1939.5 ± 1295.14
+
+Algorithm used:  Greedy_Manhattan
+Mean time (ms):  107.27 ± 135.57
+Mean path length:  81.19 ± 42.22
+Mean # expanded nodes:  657.82 ± 701.61
+
+Algorithm used:  A*_Manhattan
+Mean time (ms):  402.42 ± 442.3
+Mean path length:  70.94 ± 33.15
+Mean # expanded nodes:  1530.54 ± 1131.17
+
+Algorithm used:  Greedy_Customized_Heuristic
+Mean time (ms):  35.0 ± 30.07
+Mean path length:  106.72 ± 23.58
+Mean # expanded nodes:  453.22 ± 288.66
+
+Algorithm used:  A*_Customized_Heuristic
+Mean time (ms):  567.03 ± 355.68
+Mean path length:  97.84 ± 18.61
+Mean # expanded nodes:  2605.22 ± 965.76
+
+Process finished with exit code 0
