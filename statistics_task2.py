@@ -8,12 +8,12 @@ from importlib import reload
 
 # To implement the different algorithms, change the assigned value in cost function definition.
 
-def cost(prev_cost, last_checked_state, search_algorithm='GREEDY_CUSTOM'):
+def cost(prev_cost, last_checked_state, search_algorithm):
     # Function to calculate the cost or priority used to search the tree
-    if search_algorithm == 'DSF':
+    if search_algorithm == 'DFS':
         # Goes deep into the tree.
         return prev_cost - 1
-    if search_algorithm == 'BSF':
+    if search_algorithm == 'BFS':
         # assigns an equal priority to every node.
         return 0
     if search_algorithm == 'RANDOM':
@@ -67,7 +67,7 @@ def print_my_state(state):
           ',cshowdowninfo:', state.showdown_info)
 
 def game(search_algorithm):
-    reload(pe_)
+
     MAX_HANDS = 4
     INIT_AGENT_STACK = 400
 
@@ -113,7 +113,7 @@ def game(search_algorithm):
                     if _state_.nn_current_hand <= 4:
                         if _state_.agent.stack > 300:
                             _state_.parent_state = current_state[0]
-                            priority = cost(priority, _state_)
+                            priority = cost(priority, _state_, search_algorithm)
                             game_state_queue.append([_state_, priority])
             already_visited.append(current_state[0])
             #print_my_state(current_state[0])
@@ -170,8 +170,9 @@ for element in search_algorithms:
     hands[element] = []
     biddings[element] = []
 
-for element in search_algorithms:
-    for times in range(20):
+for times in range(20):
+    reload(pe_)
+    for element in search_algorithms:
         print(element)
         nodes_expanded, number_hands, number_biddings = game(element)
 
