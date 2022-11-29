@@ -27,9 +27,9 @@ def cost(prev_cost, last_checked_state, search_algorithm):
     if search_algorithm == 'GREEDY_CUSTOM':
         # Uses the absolute value of the difference between the number of times both players made a bid until now
         # and the real number of biddings as a heuristic.
-        # we found 33 as a somewhat close number to the actual biddings to find the result.
+        # we found 26 as a somewhat close number to the actual biddings to find the result.
         traceback_bidding = traceback_bidding_ammount(last_checked_state)
-        heuristic= abs(33 - traceback_bidding)
+        heuristic= abs(30 - traceback_bidding)
 
         #print('How close we are to real # of biddings:',heuristic,' ,Total times both players have bidded:', traceback_bidding)
         return heuristic
@@ -149,7 +149,7 @@ def game(search_algorithm):
 
 
     else:
-        print('Could not find a solution')
+        #print('Could not find a solution')
         nodes_expanded = len(already_visited)
         number_hands = None
         number_biddings = None
@@ -159,7 +159,6 @@ def game(search_algorithm):
 
 
 search_algorithms = ['DFS', 'BFS', 'RANDOM', 'GREEDY', 'GREEDY_CUSTOM']
-#search_algorithms = ['DFS'] #, 'BFS', 'RANDOM', 'GREEDY', 'GREEDY_CUSTOM']
 
 nodes = {}
 hands = {}
@@ -181,22 +180,32 @@ for times in range(20):
             hands[element].append(number_hands)
         if not number_biddings is None:
             biddings[element].append(number_biddings)
-        print('------------------')
         print('Number of iterations:', times)
+        print('---------------------------------------------------------')
 
+
+print('--------------------------RESULTS-------------------------------')
 for element in search_algorithms:
-    mean_nodes = round(np.mean(nodes[element]))
-    std_dev_nodes = round(np.std(nodes[element]))
-
-    mean_hands = round(np.mean(hands[element]), 2)
-    std_dev_hands = round(np.std(hands[element]), 2)
-
-
-    mean_bidding = round(np.mean(biddings[element]), 2)
-    std_dev_bidding = round(np.std(biddings[element]), 2)
-
-    print()
+    print('---------------------------------------------------------')
     print('Algorithm used: ', element)
-    print('Mean nodes expanded: ', mean_nodes, '±', std_dev_nodes)
-    print('Mean hands played: ', mean_hands, '±', std_dev_hands)
-    print('Mean # bids done in the game: ', mean_bidding, '±', std_dev_bidding)
+    print('Number of successful games:', len(biddings[element]))
+    if len(nodes[element]) > 0:
+        mean_nodes = round(np.mean(nodes[element]))
+        std_dev_nodes = round(np.std(nodes[element]))
+        print('Mean nodes expanded: ', mean_nodes, '±', std_dev_nodes)
+    else:
+        print('Mean nodes expanded: ', None)
+    if len(hands[element]) > 0:
+        mean_hands = round(np.mean(hands[element]), 2)
+        std_dev_hands = round(np.std(hands[element]), 2)
+        print('Mean hands played: ', mean_hands, '±', std_dev_hands)
+    else:
+        print('Mean hands played: ', None)
+
+    if len(biddings[element]) > 0:
+        mean_bidding = round(np.mean(biddings[element]), 2)
+        std_dev_bidding = round(np.std(biddings[element]), 2)
+        print('Mean # bids done in the game: ', mean_bidding, '±', std_dev_bidding)
+    else:
+        print('Mean # bids done in the game: ', None)
+    print('---------------------------------------------------------')
