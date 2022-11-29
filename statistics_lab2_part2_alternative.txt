@@ -1,0 +1,28 @@
+Diff hand, diff algorithm
+
+Algorithm used:  DFS
+Mean nodes expanded:  12439 ± 8465
+Mean hands played:  3.56 ± 0.5
+Mean # bids done in the game:  28.22 ± 4.57
+
+Algorithm used:  BFS
+Mean nodes expanded:  9504 ± 9592
+Mean hands played:  3.91 ± 0.29
+Mean # bids done in the game:  28.36 ± 3.05
+
+Algorithm used:  RANDOM
+Mean nodes expanded:  10131 ± 9088
+Mean hands played:  3.73 ± 0.45
+Mean # bids done in the game:  28.36 ± 3.17
+
+Algorithm used:  GREEDY
+Mean nodes expanded:  8219 ± 7931
+Mean hands played:  3.57 ± 0.49
+Mean # bids done in the game:  28.71 ± 4.11
+
+Algorithm used:  GREEDY_CUSTOM
+Mean nodes expanded:  12845 ± 8822
+Mean hands played:  3.62 ± 0.48
+Mean # bids done in the game:  26.75 ± 4.79
+
+Process finished with exit code 0
