@@ -1,8 +1,9 @@
 import poker_game_example as pg_
+import poker_environment as pe_
 import random
 import numpy as np
 from poker_environment import AGENT_ACTIONS, BETTING_ACTIONS
-import importlib
+from importlib import reload
 
 
 # To implement the different algorithms, change the assigned value in cost function definition.
@@ -66,9 +67,7 @@ def print_my_state(state):
           ',cshowdowninfo:', state.showdown_info)
 
 def game(search_algorithm):
-    from poker_environment import AGENT_ACTIONS, BETTING_ACTIONS
-    import poker_game_example as pg_
-    importlib.reload(pg_)
+    reload(pe_)
     MAX_HANDS = 4
     INIT_AGENT_STACK = 400
 
@@ -159,8 +158,8 @@ def game(search_algorithm):
     return nodes_expanded, number_hands, number_biddings
 
 
-#search_algorithms = ['DFS', 'BFS', 'RANDOM', 'GREEDY', 'GREEDY_CUSTOM']
-search_algorithms = ['DFS'] #, 'BFS', 'RANDOM', 'GREEDY', 'GREEDY_CUSTOM']
+search_algorithms = ['DFS', 'BFS', 'RANDOM', 'GREEDY', 'GREEDY_CUSTOM']
+#search_algorithms = ['DFS'] #, 'BFS', 'RANDOM', 'GREEDY', 'GREEDY_CUSTOM']
 
 nodes = {}
 hands = {}
